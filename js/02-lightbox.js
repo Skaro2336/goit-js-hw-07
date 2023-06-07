@@ -14,7 +14,6 @@ function createGalleryImages(items) {
           <img
             class="gallery__image"
             src="${preview}"
-            data-source="${original}"
             alt="${description}"
           />
         </a>
@@ -23,17 +22,23 @@ function createGalleryImages(items) {
     .join("");
 }
 
-const onContainerClick = (e) => {
-  e.preventDefault();
+const captions = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+  captionType: "alt",
+});
 
-  const source = e.target.dataset.source;
-  if (!source) return;
+// const onContainerClick = (e) => {
+//   e.preventDefault();
 
-  const instance = basicLightbox.create(`
-    <img src="${source}" width="1280" height="auto">
-  `);
+//   const source = e.target.dataset.source;
+//   if (!source) return;
 
-  instance.show();
-};
+//   const instance = basicLightbox.create(`
+//     <img src="${source}" width="1280" height="auto">
+//   `);
 
-galleryContainer.addEventListener("click", onContainerClick);
+//   instance.show();
+// };
+
+// galleryContainer.addEventListener("click", onContainerClick);
